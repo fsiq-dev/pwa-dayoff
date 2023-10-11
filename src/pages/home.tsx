@@ -7,12 +7,13 @@ const { Meta } = Card;
 function Home () {
     const [news, setNews] = useState([])
     const [loading, setLoading] = useState(false)
+    console.log(news)
 
    
     useEffect(() => {
         setLoading(true)
-        Promise.all([getNews()]).then((response) => {
-            setNews(response[0].articles)
+        Promise.all([getNews()]).then((response: any) => {
+            setNews(response[0].results)
             setLoading(false)
         })
     }, [])
@@ -22,7 +23,7 @@ function Home () {
         <Spin spinning={loading} />
         <Row gutter={[16, 16]}>
           <Col span={24} md={16}>
-            <h2>News</h2>
+            <h2>Pokedex</h2>
             <Space
               direction='vertical'
               size='middle'
@@ -30,7 +31,7 @@ function Home () {
             >
               {news?.map((item: any, key) => (
                 <Card key={key}>
-                  <Meta title={item.title} description={item?.content} />
+                  <Meta title={item.name} description={item?.url} />
                 </Card>
               ))}
             </Space>
