@@ -28,8 +28,8 @@ function Home () {
               size='middle'
               style={{ display: "flex" }}
             >
-              {news?.map((item: any) => (
-                <Card>
+              {news?.map((item: any, key) => (
+                <Card key={key}>
                   <Meta title={item.title} description={item?.content} />
                 </Card>
               ))}
